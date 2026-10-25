@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Simple Satellite Map</title>
-    <!-- Load Leaflet Map Styles and Code -->
+    <title>Penang Satellite Map</title>
     <link rel="stylesheet" href="https://unpkg.com" />
     <script src="https://unpkg.com"></script>
     <style>
@@ -10,21 +9,19 @@
     </style>
 </head>
 <body>
-
-    <!-- This div holds your map -->
     <div id="map"></div>
-
     <script>
-        // 1. Initialize the map and set it to a starting position (Latitude, Longitude, Zoom Level)
-        var map = L.map('map').setView([0, 0], 2);
+        // Centers the map right over Penang Island
+        var map = L.map('map').setView([5.35, 100.30], 11);
 
-        // 2. Point to a free open-source satellite tile layer (Esri World Imagery is free for basic use)
-        var satelliteLayer = L.tileLayer('https://arcgisonline.com{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        // Point to your custom processed map tiles
+        var penangLayer = L.tileLayer('penang-tiles/{z}/{x}/{y}.jpg', {
+            maxZoom: 15,
+            minZoom: 10,
+            attribution: 'Imagery &copy; Copernicus Sentinel data'
         });
 
-        // 3. Drop the imagery onto your map
-        satelliteLayer.addTo(map);
+        penangLayer.addTo(map);
     </script>
 </body>
 </html>
