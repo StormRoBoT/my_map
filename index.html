@@ -12,7 +12,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #dcdcdc;
+            background-color: #dcdcdc; /* Reveals if canvas layout is sizing right */
         }
         /* Forces map viewport container to occupy full device screen height */
         #map { 
@@ -27,8 +27,9 @@
     <div id="map"></div>
 
     <script>
-        // 1. Initialize the map canvas and center it right over Penang Island
-        var map = L.map('map').setView([5.35, 100.30], 11);
+        // 1. Initialize the map canvas and center it right over the available tiles
+        // Level 10 starts at roughly Zoom 10, centering over Penang area
+        var map = L.map('map').setView([5.35, 100.30], 10);
 
         // 2. Point directly to your custom Copernicus tiles at the root directory
         // Using lowercase '{z}/{x}/{y}.jpg' to exactly match your '10/796/496.jpg' structure
