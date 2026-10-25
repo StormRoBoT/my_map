@@ -11,7 +11,7 @@ jobs:
 
       - name: Unzip tiles archive
         run: |
-          unzip -o penang-tiles.zip -d penang-tiles
+          unzip -o penang-tiles.zip -d tiles
           rm penang-tiles.zip
 
       - name: Commit unzipped tiles back to repository
