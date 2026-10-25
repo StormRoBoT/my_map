@@ -1,0 +1,23 @@
+name: Unzip Map Tiles
+on:
+  push:
+    branches: [ main ]
+jobs:
+  unzip-tiles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Unzip tiles archive
+        run: |
+          unzip -o penang-tiles.zip -d penang-tiles
+          rm penang-tiles.zip
+
+      - name: Commit unzipped tiles back to repository
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@://github.com'
+          git add penang-tiles/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Automated tile extraction"
+          git push origin main
