@@ -25,9 +25,8 @@
         // 1. Initialize the map and center it directly over Penang Island (Zoom level 11)
         var map = L.map('map').setView([5.35, 100.30], 11);
 
-        // 2. Point to YOUR custom Copernicus satellite tiles sitting in your main directory
-        // NOTE: If your files inside folders 10/11 end in lowercase .jpg, change .JPG to .jpg below!
-        var mySatelliteLayer = L.tileLayer('{z}/{x}/{y}.JPG', {
+        // 2. Point to YOUR custom Copernicus satellite tiles using lowercase .jpg extension
+        var mySatelliteLayer = L.tileLayer('{z}/{x}/{y}.jpg', {
             maxZoom: 15,
             minZoom: 10,
             attribution: 'Imagery &copy; Copernicus Sentinel data'
