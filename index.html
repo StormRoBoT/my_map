@@ -2,51 +2,54 @@
 <html>
 <head>
     <title>Penang Satellite Map</title>
-    <!-- Load Leaflet Map Styles and Code -->
+    <!-- Load Leaflet Map Styles and Code Components Safely -->
     <link rel="stylesheet" href="https://cloudflare.com" />
     <script src="https://cloudflare.com"></script>
     <style>
-        /* Force the page wrapper to fill screen bounds safely */
+        /* Force the core HTML wrapper frameworks to expand fully */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #dcdcdc; /* Reveals if canvas layout is sizing right */
+            background-color: #eaeaea; /* Base gray indicator window */
         }
-        /* Forces map viewport container to occupy full device screen height */
+        /* SAFARI FIX: Hard-bind layout wrapper box parameters using physical screen viewport calculations */
         #map { 
-            height: 100vh; 
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             width: 100%;
+            height: 100%;
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <!-- This div holds your map canvas -->
+    <!-- Target map viewport rendering container -->
     <div id="map"></div>
 
     <script>
-        // 1. Initialize the map canvas and center it right over the available tiles
-        // Level 10 starts at roughly Zoom 10, centering over Penang area
-        var map = L.map('map').setView([5.35, 100.30], 10);
+        // 1. Initialize Leaflet engine, locking view configuration coordinates over Penang Island [Lat, Lon]
+        var map = L.map('map').setView([5.35, 100.30], 11);
 
-        // 2. Point directly to your custom Copernicus tiles at the root directory
-        // Using lowercase '{z}/{x}/{y}.jpg' to exactly match your '10/796/496.jpg' structure
-        var mySatelliteLayer = L.tileLayer('{z}/{x}/{y}.jpg', {
-            maxZoom: 15,
-            minZoom: 10,
-            attribution: 'Imagery &copy; Copernicus Sentinel data'
-        });
-        mySatelliteLayer.addTo(map);
-
-        // 3. BASE BACKGROUND STREET MAP (Fallback)
-        // This drops a background world street map underneath your custom imagery. 
-        // It guarantees your screen will immediately show a working map interface instead of going blank.
+        // 2. Load the Emergency Fallback base layer first to stabilize container display trees
         var backupStreetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         });
         backupStreetLayer.addTo(map);
+
+        // 3. Render your custom satellite slices directly above the base street maps
+        // Pointing straight to the base directories using your lowercase '.jpg' file template configuration
+        var mySatelliteLayer = L.tileLayer('{z}/{x}/{y}.jpg', {
+            maxZoom: 15,
+            minZoom: 10,
+            attribution: 'Imagery &copy; Copernicus'
+        });
+        mySatelliteLayer.addTo(map);
     </script>
 </body>
 </html>
