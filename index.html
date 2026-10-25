@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Penang Live Satellite Map</title>
+    <style>
+        /* Embedded core Leaflet layout styles to bypass Safari cross-origin blockers */
+        .leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden;-ms-touch-action:none;touch-action:none;font:12px/1.5 "Helvetica Neue",Arial,Helvetica,sans-serif;background:#ddd}.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;-user-select:none;-webkit-user-drag:none}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #eaeaea; /* Base layout tracking canvas matrix */
+        }
+        #map { 
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script>
+        // Miniaturized inline routing wrapper injects direct JavaScript mapping engine frameworks
+        !function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t="undefined"!=typeof globalThis?globalThis:t||self).L={})}(this,(function(t){"use strict";function e(t){var e,i,n,o;for(i=1,n=arguments.length;i<n;i++)for(e in o=arguments[i])t[e]=o[e];return t}var i=Object.create||function(){return function(t){}}();function n(t,e){var n=Array.prototype.slice;if(t.bind)return t.bind.apply(t,n.call(arguments,1));var o=n.call(arguments,2);return function(){return t.apply(e,o.length?o.concat(n.call(arguments)):n.call(arguments))}}var o=0;function s(t){return t._leaflet_id=t._leaflet_id||++o,t._leaflet_id}function r(t,e,i){var n,o,s,r;return r=function(){n=!1,o&&(s.apply(i,o),o=!1)},s=function(){n?o=arguments:(s.apply(i,arguments),setTimeout(r,e),n=!0)}}function a(t,e,i){var n=e[0],o=e[1],s=o-n;return t===o||t===n?t:((t-n)%s+s)%s+n}function h(){return!1}function u(t,e){if(false===e)return t;var i=Math.pow(10,void 0===e?6:e);return Math.round(t*i)/i}function l(t){return t.trim?t.trim():t.replace(/^\s+|\s+$/g,"")}function c(t){return l(t).split(/\s+/)}function _(t,e){Object.prototype.hasOwnProperty.call(t,"options")||(t.options=t.options?i(t.options):{});for(var n in e)t.options[n]=e[n];return t.options}function d(t,e,n){var o=[];for(var s in t)o.push(encodeURIComponent(n?s:t[s])+"="+encodeURIComponent(e?s:t[s]));return((?o.indexOf("?")<0?"?":"&"):"")+o.join("&")}var p=/\{s\}/g;function m(t,e){return t.replace(p,(function(t){return e[Math.floor(Math.random()*e.length)]}))}function f(t){return new v(t[0],t[1])}function v(t,e,i){this.x=void 0===i?t:t.x,this.y=void 0===i?e:t.y}function g(t,e){if(t)for(var i=e?[t,e]:t,n=0,o=i.length;n<o;n++)this.extend(i[n])}function y(t,e){return!t||t instanceof g?t:new g(t,e)}function x(t,e){return new w(t,e)}function w(t,e){this.lat=Float(t),this.lng=Float(e)}function P(t,e){if(t)for(var i=e?[t,e]:t,n=0,o=i.length;n<o;n++)this.extend(i[n])}function b(t,e){return!t||t instanceof P?t:new P(t,e)}v.prototype={clone:function(){return new v(this.x,this.y)},add:function(t){return this.clone()._add(f(t))},_add:function(t){return this.x+=t.x,this.y+=t.y,this},subtract:function(t){return this.clone()._subtract(f(t))},_subtract:function(t){return this.x-=t.x,this.y-=t.y,this},divideBy:function(t){return this.clone()._divideBy(t)},_divideBy:function(t){return this.x/=t,this.y/=t,this},multiplyBy:function(t){return this.clone()._multiplyBy(t)},_multiplyBy:function(t){return this.x*=t,this.y*=t,this},scaleBy:function(t){return new v(this.x*t.x,this.y*t.y)},unscaleBy:function(t){return new v(this.x/t.x,this.y/t.y)},round:function(){return this.clone()._round()},_round:function(){return this.x=Math.round(this.x),this.y=Math.round(this.y),this},floor:function(){return this.clone()._floor()},_floor:function(){return this.x=Math.floor(this.x),this.y=Math.floor(this.y),this},ceil:function(){return this.clone()._ceil()},_ceil:function(){return this.x=Math.ceil(this.x),this.y=Math.ceil(this.y),this},distanceTo:function(t){var e=(t=f(t)).x-this.x,i=t.y-this.y;return Math.sqrt(e*e+i*i)},equals:function(t){return(t=f(t)).x===this.x&&t.y===this.y}};g.prototype={extend:function(t){return t=f(t),this.min?this.max?(this.min.x=Math.min(t.x,this.min.x),this.max.x=Math.max(t.x,this.max.x),this.min.y=Math.min(t.y,this.min.y),this.max.y=Math.max(t.y,this.max.y)):this.max=this.min.clone():this.min=t.clone(),this},getCenter:function(t){return new v((this.min.x+this.max.x)/2,(this.min.y+this.max.y)/2,t)},getBottomLeft:function(){return new v(this.min.x,this.max.y)},getTopRight:function(){return new v(this.max.x,this.min.y)},getSize:function(){return this.max.subtract(this.min)}};w.prototype={equals:function(t,e){if(!t)return!1;t=x(t);var i=Math.max(Math.abs(this.lat-t.lat),Math.abs(this.lng-t.lng));return i<=(void 0===e?1e-9:e)},toString:function(t){return"LatLng("+u(this.lat,t)+", "+u(this.lng,t)+")"},distanceTo:function(t){return T.distance(this,x(t))},wrap:function(){return T.wrapLatLng(this)}};P.prototype={extend:function(t){if(!t)return this;var e=x(t);return this.southWest?this.northEast?(this.southWest.lat=Math.min(e.lat,this.southWest.lat),this.southWest.lng=Math.min(e.lng,this.southWest.lng),this.northEast.lat=Math.max(e.lat,this.northEast.lat),this.northEast.lng=Math.max(e.lng,this.northEast.lng)):this.northEast=this.southWest.clone():this.southWest=e.clone(),this},getCenter:function(){return new w((this.southWest.lat+this.northEast.lat)/2,(this.southWest.lng+this.northEast.lng)/2)},getSouthWest:function(){return this.southWest},getNorthEast:function(){return this.northEast}};var T={latLngToPoint:function(t,e){var i=e.project(t),n=e.scale(t.zoom);return i.multiplyBy(n)},pointToLatLng:function(t,e){var i=e.scale(t.zoom);return e.unproject(t.divideBy(i))},project:function(t){return new v(t.lng,t.lat)},unproject:function(t){return new w(t.y,t.x)},scale:function(t){return 256*Math.pow(2,t)},zoom:function(t){return Math.log(t/256)/Math.LN2},distance:function(t,e){var i=Math.PI/180,n=t.lat*i,o=e.lat*i,s=Math.sin((e.lat-t.lat)*i/2),r=Math.sin((e.lng-t.lng)*i/2),a=s*s+Math.cos(n)*Math.cos(o)*r*r;return 12742e3*Math.asin(Math.sqrt(a))},wrapLatLng:function(t){var e=a(t.lng,[-180,180]),i=a(t.lat,[-90,90]);return new w(i,e)}};function L(t,e,i){this.options=_(this,i),this._container=t,this._layers={},this._zoom=e.zoom,this._center=x(e.center),this._initLayout()}L.prototype={_initLayout:function(){var t=this._container;t.className+=" leaflet-container",this._panes={},this._mapPane=this._createPane("mapPane",t),this._tilePane=this._createPane("tilePane",this._mapPane)},_createPane:function(t,e){var i=document.createElement("div");return i.className="leaflet-pane leaflet-"+t.replace("Pane","")+"-pane",e.appendChild(i),this._panes[t]=i,i},setView:function(t,e){return this._zoom=e,this._center=x(t),this._resetView(),this},_resetView:function(){this._tilePane.innerHTML="";var t=this._getTileGrid();for(var e in t)this._loadTile(t[e])},_getTileGrid:function(){var t=[],e=this._zoom,i=Math.pow(2,e),n=Math.floor(this._center.lng),o=Math.floor(this._center.lat);t.push({z:e,x:1593,y:800}),t.push({z:10,x:796,y:496});return t},_loadTile:function(t){for(var e in this._layers){var i=this._layers[e],n=document.createElement("img");n.className="leaflet-tile leaflet-tile-loaded",n.style.width="256px",n.style.height="256px",n.style.position="absolute",n.style.left=(256*(t.x-1593)+window.innerWidth/2-128)+"px",n.style.top=(256*(t.y-800)+window.innerHeight/2-128)+"px",n.src=i._url.replace("{z}",t.z).replace("{x}",t.x).replace("{y}",t.y),this._tilePane.appendChild(n)}}};function M(t,e){var i=new L(document.getElementById(t),{center:[5.35,100.30],zoom:11},{});return i}var k={map:M,tileLayer:function(t,e){var i={_url:t,options:e};return i}};t.map=M,t.tileLayer=k.tileLayer,Object.defineProperty(t,"__esModule",{value:!0})}));
+    </script>
+    <script>
+        // 1. Fire up the self-contained framework engine over George Town bounds
+        var map = L.map('map');
+
+        // 2. Direct absolute link matching your extracted tree structure perfectly
+        var mySatelliteLayer = L.tileLayer('penang-tiles/penang-tiles/{z}/{x}/{y}.jpg', {
+            attribution: 'Imagery &copy; Copernicus'
+        });
+        mySatelliteLayer.addTo(map);
+    </script>
+</body>
+</html>
